@@ -1,0 +1,36 @@
+<template>
+  <ul>
+    <resource-card
+      v-for="resource in resources"
+      :key="resource.id"
+      :resource="resource"
+    ></resource-card>
+  </ul>
+</template>
+
+<script>
+
+  import ResourceCard from './ResourceCard.vue';
+
+  export default {
+
+    components: {
+      ResourceCard
+    },
+
+    props: [
+      'resources'
+    ]
+
+  }
+</script>
+
+<style scoped>
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    max-width: 40rem;
+  }
+</style>
