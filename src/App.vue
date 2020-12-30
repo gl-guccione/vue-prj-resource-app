@@ -2,16 +2,19 @@
   <the-header title="RememberMe"></the-header>
 
   <resources-list :resources="resources"></resources-list>
+  <add-resource @add-new-resource="addNewResource"></add-resource>
 </template>
 
 <script>
 
   import ResourcesList from './components/ResourcesList.vue';
+  import AddResource from './components/AddResource.vue';
   import TheHeader from './components/layouts/TheHeader.vue';
 
   export default {
     components: {
       ResourcesList,
+      AddResource,
       TheHeader
     },
 
@@ -32,6 +35,18 @@
           }
         ]
       };
+    },
+    methods: {
+      addNewResource(title, description, link) {
+        const newElement = {
+          id: (this.resources[this.resources.length - 1].id) + 1,
+          title: title,
+          description: description,
+          link: link
+        };
+
+        this.resources.push(newElement);
+      }
     }
   };
 
