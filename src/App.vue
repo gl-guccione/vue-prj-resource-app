@@ -6,8 +6,6 @@
     <base-button @click="setVisibleComponent('add-resource')" :mode="visibleComponent === 'add-resource' ? '' : 'flat'">Add new resource</base-button>
   </base-card>
 
-
-
   <resources-list v-if="visibleComponent === 'resources-list'" :resources="resources"></resources-list>
   <keep-alive>
     <add-resource v-if="visibleComponent === 'add-resource'" @add-new-resource="addNewResource"></add-resource>
@@ -48,15 +46,17 @@
     },
     methods: {
 
-      addNewResource(title, description, link) {
+      addNewResource(elm) {
         const newElement = {
           id: (this.resources[this.resources.length - 1].id) + 1,
-          title: title,
-          description: description,
-          link: link
+          title: elm.insertedTitle,
+          description: elm.inserterdDescription,
+          link: elm.insertedLink
         };
 
         this.resources.push(newElement);
+
+        this.visibleComponent = 'resources-list';
       },
       setVisibleComponent(elm) {
         this.visibleComponent = elm;

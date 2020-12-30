@@ -37,7 +37,12 @@ export default {
   },
   methods: {
     addNewResourceInComponent() {
-      this.$emit('add-new-resource', this.newResource.insertedTitle, this.newResource.insertedDescription, this.newResource.insertedLink );
+      if (this.newResource.insertedTitle != '' && this.newResource.insertedDescription != '' && this.newResource.insertedLink != '') {
+        this.$emit('add-new-resource', this.newResource);
+        this.newResource.insertedTitle = '';
+        this.newResource.insertedDescription = '';
+        this.newResource.insertedLink = '';
+      }
     }
   }
 
