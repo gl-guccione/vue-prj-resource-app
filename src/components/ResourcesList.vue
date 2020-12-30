@@ -4,6 +4,7 @@
       v-for="resource in resources"
       :key="resource.id"
       :resource="resource"
+      @delete-resource="$emit('delete-resource', $event)"
     ></resource-card>
   </ul>
 </template>
@@ -20,7 +21,9 @@
 
     props: [
       'resources'
-    ]
+    ],
+
+    emits: ['delete-resource']
 
   }
 </script>
