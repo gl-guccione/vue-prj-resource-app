@@ -18,11 +18,9 @@
     components: {
       ResourceCard
     },
-
     props: [
       'resources'
     ],
-
     emits: ['delete-resource']
 
   }

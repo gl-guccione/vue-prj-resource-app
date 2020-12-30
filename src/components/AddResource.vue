@@ -2,6 +2,13 @@
 
   <base-card>
 
+    <base-alert v-if="errorVisibile">
+      <span>
+        Compila tutti i campi
+      </span>
+      <button @click="errorVisibile = false">chiudi</button>
+    </base-alert>
+
     <form @submit.prevent="addNewResourceInComponent">
 
       <div>
@@ -32,7 +39,8 @@ export default {
         insertedTitle: '',
         insertedDescription: '',
         insertedLink: '',
-      }
+      },
+      errorVisibile: false
     };
   },
   methods: {
@@ -42,8 +50,10 @@ export default {
         this.newResource.insertedTitle = '';
         this.newResource.insertedDescription = '';
         this.newResource.insertedLink = '';
+      } else {
+        this.errorVisibile = true;
       }
-    }
+    },
   }
 
 }
