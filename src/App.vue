@@ -1,8 +1,17 @@
 <template>
   <the-header title="RememberMe"></the-header>
 
-  <resources-list :resources="resources"></resources-list>
-  <add-resource @add-new-resource="addNewResource"></add-resource>
+  <base-card>
+    <base-button @click="setVisibleComponent('resources-list')" :mode="visibleComponent === 'resources-list' ? '' : 'flat'">Resource list</base-button>
+    <base-button @click="setVisibleComponent('add-resource')" :mode="visibleComponent === 'add-resource' ? '' : 'flat'">Add new resource</base-button>
+  </base-card>
+
+
+
+  <resources-list v-if="visibleComponent === 'resources-list'" :resources="resources"></resources-list>
+  <keep-alive>
+    <add-resource v-if="visibleComponent === 'add-resource'" @add-new-resource="addNewResource"></add-resource>
+  </keep-alive>
 </template>
 
 <script>
@@ -20,6 +29,7 @@
 
     data() {
       return {
+        visibleComponent: 'resources-list',
         resources: [
           {
             id: 1,
@@ -37,6 +47,7 @@
       };
     },
     methods: {
+
       addNewResource(title, description, link) {
         const newElement = {
           id: (this.resources[this.resources.length - 1].id) + 1,
@@ -46,7 +57,11 @@
         };
 
         this.resources.push(newElement);
+      },
+      setVisibleComponent(elm) {
+        this.visibleComponent = elm;
       }
+
     }
   };
 
