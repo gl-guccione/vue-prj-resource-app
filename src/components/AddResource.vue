@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     addNewResourceInComponent() {
-      if (this.newResource.insertedTitle != '' && this.newResource.insertedDescription != '' && this.newResource.insertedLink != '') {
+      if (this.newResource.insertedTitle.trim() != '' && this.newResource.insertedDescription.trim() != '' && this.newResource.insertedLink.trim() != '') {
         this.$emit('add-new-resource', this.newResource);
         this.newResource.insertedTitle = '';
         this.newResource.insertedDescription = '';
