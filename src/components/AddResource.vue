@@ -2,11 +2,12 @@
 
   <base-card>
 
-    <base-alert v-if="errorVisibile">
-      <span>
-        Compila tutti i campi
-      </span>
-      <button @click="errorVisibile = false">chiudi</button>
+    <base-alert v-if="errorVisibile" @close="errorVisibile = false">
+      <template #body>
+        <span>
+          At least one input value is invalid.
+        </span>
+      </template>
     </base-alert>
 
     <form @submit.prevent="addNewResourceInComponent">

@@ -1,19 +1,32 @@
 <template>
 
-  <div></div>
+  <div @click="$emit('close')"></div>
 
   <dialog open>
 
-    <header>errore</header>
+    <header>
+      <slot name="title">
+        <h2>Error</h2>
+      </slot>
+    </header>
 
-    <slot></slot>
+    <section>
+      <slot name="body"></slot>
+    </section>
+
+    <menu>
+      <slot name="actions">
+        <base-button @click="$emit('close')">Close</base-button>
+      </slot>
+    </menu>
+
   </dialog>
 
 </template>
 
 <script>
 export default {
-
+  emits: ['close']
 }
 </script>
 
